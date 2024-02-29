@@ -32,9 +32,9 @@ dependencies {
 		exclude(group: "com.sun.activation", module: "jakarta.activation")
 	}
 	optional("org.seleniumhq.selenium:selenium-api")
-	optional("org.springframework:spring-test")
-	optional("org.springframework:spring-web")
-	optional("org.springframework:spring-webflux")
+	optional(project(":spring-test"))
+	optional(project(":spring-web"))
+	optional(project(":spring-webflux"))
 	optional("org.springframework.graphql:spring-graphql-test")
 	optional("net.sourceforge.htmlunit:htmlunit") {
 		exclude(group: "commons-logging", module: "commons-logging")
@@ -53,8 +53,8 @@ dependencies {
 	testImplementation("org.mockito:mockito-junit-jupiter")
 	testImplementation("org.slf4j:slf4j-api")
 	testImplementation("org.spockframework:spock-core")
-	testImplementation("org.springframework:spring-webmvc")
-	testImplementation("org.springframework:spring-core-test")
+	testImplementation(project(":spring-webmvc"))
+	testImplementation(project(":spring-core-test"))
 	testImplementation("org.testng:testng")
 
 	testRuntimeOnly("org.junit.vintage:junit-vintage-engine")

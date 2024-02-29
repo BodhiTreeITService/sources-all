@@ -13,7 +13,7 @@ dependencies {
 	}
 	runtimeOnly("org.postgresql:postgresql")
 	runtimeOnly("org.postgresql:r2dbc-postgresql")
-	runtimeOnly("org.springframework:spring-jdbc")
+	runtimeOnly(project(":spring-jdbc"))
 
 	testImplementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-test"))
 	testImplementation(project(":spring-boot-project:spring-boot-testcontainers"))

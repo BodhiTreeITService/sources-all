@@ -28,8 +28,8 @@ dependencies {
 	testImplementation("org.awaitility:awaitility")
 	testImplementation("org.junit.jupiter:junit-jupiter")
 	testImplementation("org.mockito:mockito-core")
-	testImplementation("org.springframework:spring-core-test")
-	testImplementation("org.springframework:spring-test")
+	testImplementation(project(":spring-core-test"))
+	testImplementation(project(":spring-test"))
 	testImplementation("org.testcontainers:testcontainers")
 
 	testRuntimeOnly("com.microsoft.sqlserver:mssql-jdbc")

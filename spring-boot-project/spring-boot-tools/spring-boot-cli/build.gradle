@@ -27,13 +27,13 @@ dependencies {
 	implementation("net.sf.jopt-simple:jopt-simple")
 	implementation("org.apache.httpcomponents.client5:httpclient5")
 	implementation("org.slf4j:slf4j-simple")
-	implementation("org.springframework:spring-core")
+	implementation(project(":spring-core"))
 	implementation("org.springframework.security:spring-security-crypto")
 
 	intTestImplementation(project(":spring-boot-project:spring-boot-tools:spring-boot-test-support"))
 	intTestImplementation("org.assertj:assertj-core")
 	intTestImplementation("org.junit.jupiter:junit-jupiter")
-	intTestImplementation("org.springframework:spring-core")
+	intTestImplementation(project(":spring-core"))
 
 	loader(project(":spring-boot-project:spring-boot-tools:spring-boot-loader-classic"))
 
@@ -44,7 +44,7 @@ dependencies {
 	testImplementation("org.junit.jupiter:junit-jupiter")
 	testImplementation("org.mockito:mockito-core")
 	testImplementation("org.mockito:mockito-junit-jupiter")
-	testImplementation("org.springframework:spring-test")
+	testImplementation(project(":spring-test"))
 }
 
 task fullJar(type: Jar) {

@@ -30,11 +30,11 @@ dependencies {
 		exclude(group: "com.sun.activation", module: "jakarta.activation")
 	}
 	optional("org.seleniumhq.selenium:selenium-api")
-	optional("org.springframework:spring-orm")
-	optional("org.springframework:spring-test")
-	optional("org.springframework:spring-web")
-	optional("org.springframework:spring-webmvc")
-	optional("org.springframework:spring-webflux")
+	optional(project(":spring-orm"))
+	optional(project(":spring-test"))
+	optional(project(":spring-web"))
+	optional(project(":spring-webmvc"))
+	optional(project(":spring-webflux"))
 	optional("org.springframework.data:spring-data-cassandra") {
 		exclude group: "org.slf4j", module: "jcl-over-slf4j"
 	}
@@ -93,7 +93,7 @@ dependencies {
 	testImplementation("org.mockito:mockito-core")
 	testImplementation("org.mockito:mockito-junit-jupiter")
 	testImplementation("org.skyscreamer:jsonassert")
-	testImplementation("org.springframework:spring-core-test")
+	testImplementation(project(":spring-core-test"))
 	testImplementation("org.springframework.hateoas:spring-hateoas")
 	testImplementation("org.springframework.plugin:spring-plugin-core")
 	testImplementation("org.testcontainers:cassandra")

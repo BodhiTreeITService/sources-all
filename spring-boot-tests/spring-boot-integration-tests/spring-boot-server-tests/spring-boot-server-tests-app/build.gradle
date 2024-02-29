@@ -59,13 +59,13 @@ tasks.register("resourcesJar", Jar) { jar ->
 
 dependencies {
 	compileOnly("org.eclipse.jetty.ee10:jetty-ee10-servlet")
-	compileOnly("org.springframework:spring-web")
+	compileOnly(project(":spring-web"))
 
 	implementation("org.springframework.boot:spring-boot-starter")
 
 	app(files(resourcesJar))
 	app(files(sourceSets.main.output))
-	app("org.springframework:spring-web")
+	app(project(":spring-web"))
 	jetty("org.springframework.boot:spring-boot-starter-jetty")
 	tomcat("org.springframework.boot:spring-boot-starter-tomcat")
 	undertow("org.springframework.boot:spring-boot-starter-undertow")

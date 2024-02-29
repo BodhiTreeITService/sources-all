@@ -18,8 +18,8 @@ configurations {
 dependencies {
 	annotationProcessor("org.apache.logging.log4j:log4j-core")
 
-	api("org.springframework:spring-core")
-	api("org.springframework:spring-context")
+	api(project(":spring-core"))
+	api(project(":spring-context"))
 
 	optional("ch.qos.logback:logback-classic")
 	optional("com.fasterxml.jackson.core:jackson-databind")
@@ -76,14 +76,14 @@ dependencies {
 	optional("org.postgresql:postgresql")
 	optional("org.slf4j:jul-to-slf4j")
 	optional("org.slf4j:slf4j-api")
-	optional("org.springframework:spring-messaging")
-	optional("org.springframework:spring-orm")
-	optional("org.springframework:spring-oxm")
-	optional("org.springframework:spring-r2dbc")
-	optional("org.springframework:spring-test")
-	optional("org.springframework:spring-web")
-	optional("org.springframework:spring-webflux")
-	optional("org.springframework:spring-webmvc")
+	optional(project(":spring-messaging"))
+	optional(project(":spring-orm"))
+	optional(project(":spring-oxm"))
+	optional(project(":spring-r2dbc"))
+	optional(project(":spring-test"))
+	optional(project(":spring-web"))
+	optional(project(":spring-webflux"))
+	optional(project(":spring-webmvc"))
 	optional("org.springframework.security:spring-security-web")
 	optional("org.springframework.ws:spring-ws-core") {
 		exclude group: "com.sun.mail", module: "jakarta.mail"
@@ -97,7 +97,7 @@ dependencies {
 	optional("org.jetbrains.kotlin:kotlin-stdlib")
 
 	testImplementation(project(":spring-boot-project:spring-boot-tools:spring-boot-test-support"))
-	testImplementation("org.springframework:spring-core-test")
+	testImplementation(project(":spring-core-test"))
 	testImplementation("com.ibm.db2:jcc")
 	testImplementation("com.jayway.jsonpath:json-path")
 	testImplementation("com.microsoft.sqlserver:mssql-jdbc")
@@ -126,8 +126,8 @@ dependencies {
 	}
 	testImplementation("org.mockito:mockito-core")
 	testImplementation("org.mockito:mockito-junit-jupiter")
-	testImplementation("org.springframework:spring-context-support")
-	testImplementation("org.springframework:spring-core-test")
+	testImplementation(project(":spring-context-support"))
+	testImplementation(project(":spring-core-test"))
 	testImplementation("org.springframework.data:spring-data-redis")
 	testImplementation("org.springframework.data:spring-data-r2dbc")
 	testImplementation("org.xerial:sqlite-jdbc")

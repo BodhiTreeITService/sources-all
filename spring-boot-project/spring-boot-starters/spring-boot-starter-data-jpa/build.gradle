@@ -9,5 +9,5 @@ dependencies {
 	api(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-jdbc"))
 	api("org.hibernate.orm:hibernate-core")
 	api("org.springframework.data:spring-data-jpa")
-	api("org.springframework:spring-aspects")
+	api(project(":spring-aspects"))
 }

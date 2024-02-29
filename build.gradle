@@ -1,4 +1,5 @@
 plugins {
+//	spring-framework
 	id 'io.freefair.aspectj' version '8.4' apply false
 	// kotlinVersion is managed in gradle.properties
 	id 'org.jetbrains.kotlin.plugin.serialization' version "${kotlinVersion}" apply false
@@ -6,21 +7,42 @@ plugins {
 	id 'org.unbroken-dome.xjc' version '2.0.0' apply false
 	id 'com.github.ben-manes.versions' version '0.51.0'
 	id 'com.github.johnrengelman.shadow' version '8.1.1' apply false
-	id 'de.undercouch.download' version '5.4.0'
+//	id 'de.undercouch.download' version '5.4.0'
+	id 'de.undercouch.download'
 	id 'me.champeau.jmh' version '0.7.2' apply false
 	id 'me.champeau.mrjar' version '0.1.1'
+
+//	spring boot
+	id "base"
+	id "org.jetbrains.kotlin.jvm" apply false // https://youtrack.jetbrains.com/issue/KT-30276
+//	id "io.spring.nohttp" version "0.0.11"
+	id "io.spring.nohttp"
 }
 
 ext {
-	moduleProjects = subprojects.findAll { it.name.startsWith("spring-") }
-	javaProjects = subprojects.findAll { !it.name.startsWith("framework-") }
+	springbootProjects = subprojects.findAll { it.name.startsWith("spring-boot") }
+	springframeworkProjects = subprojects - springbootProjects
+	moduleProjects = springframeworkProjects.findAll { it.name.startsWith("spring-") }
+	javaProjects = springframeworkProjects.findAll { !it.name.startsWith("framework-") }
+
+
+//	moduleProjects = subprojects.findAll { it.name.startsWith("spring-") && !it.name.startsWith("spring-boot") }
+//	javaProjects = subprojects.findAll { !it.name.startsWith("framework-") && !it.name.startsWith("spring-boot") }
+//	springbootProjects = subprojects.findAll { it.name.startsWith("spring-boot") }
 }
 
-description = "Spring Framework"
+description = "sources"
 
 configure(allprojects) { project ->
-	apply plugin: "org.springframework.build.localdev"
-	group = "org.springframework"
+	if(project.name.startsWith("spring-boot")){
+		group "org.springframework.boot"
+		version = springBootVersion
+	}
+	else {
+		apply plugin: "org.springframework.build.localdev"
+		group = "org.springframework"
+		version = springFrameworkVersion
+	}
 	repositories {
 		mavenCentral()
 		maven {
@@ -45,7 +67,7 @@ configure(allprojects) { project ->
 	}
 }
 
-configure(allprojects - project(":framework-platform")) {
+configure(allprojects - project(":framework-platform") - springbootProjects) {
 	configurations {
 		dependencyManagement {
 			canBeConsumed = false
@@ -117,4 +139,48 @@ configure([rootProject] + javaProjects) { project ->
 
 configure(moduleProjects) { project ->
 	apply from: "${rootDir}/gradle/spring-module.gradle"
+}
+
+
+// spring boot
+defaultTasks 'build'
+
+nohttp {
+	allowlistFile = project.file("src/nohttp/allowlist.lines")
+	source.exclude "**/bin/**"
+	source.exclude "**/build/**"
+	source.exclude "**/out/**"
+	source.exclude "**/target/**"
+	source.exclude "**/.settings/**"
+	source.exclude "**/.classpath"
+	source.exclude "**/.project"
+	source.exclude "spring-boot-project/spring-boot-tools/spring-boot-buildpack-platform/src/test/resources/org/springframework/boot/buildpack/platform/docker/export.tar"
+}
+
+check {
+	dependsOn checkstyleNohttp
+}
+
+//allprojects.each {project
+//	if(project.name.startsWith('spring-boot')){
+//		group "org.springframework.boot"
+//	}
+//
+//	repositories {
+//		mavenCentral()
+//		if (version.contains('-')) {
+//			maven { url "https://repo.spring.io/milestone" }
+//		}
+//		if (version.endsWith('-SNAPSHOT')) {
+//			maven { url "https://repo.spring.io/snapshot" }
+//		}
+//	}
+//
+//	configurations.all {
+//		resolutionStrategy.cacheChangingModulesFor 0, "minutes"
+//	}
+//}
+
+tasks.named("checkstyleNohttp").configure {
+	maxHeapSize = "1536m"
 }

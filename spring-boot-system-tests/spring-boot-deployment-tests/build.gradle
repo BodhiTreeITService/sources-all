@@ -29,7 +29,7 @@ dependencies {
 	systemTestImplementation("org.awaitility:awaitility")
 	systemTestImplementation("org.testcontainers:junit-jupiter")
 	systemTestImplementation("org.testcontainers:testcontainers")
-	systemTestImplementation("org.springframework:spring-web")
+	systemTestImplementation(project(":spring-web"))
 
 	providedRuntime(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-tomcat"))
 }

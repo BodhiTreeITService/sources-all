@@ -7,7 +7,7 @@ dependencies {
 	compileOnly("org.junit.jupiter:junit-jupiter")
 	compileOnly("org.junit.platform:junit-platform-engine")
 	compileOnly("org.junit.platform:junit-platform-launcher")
-	implementation("com.thoughtworks.qdox:qdox")
+	implementation("com.thoughtworks.qdox:qdox:2.0.3")
 }
 
 jar {
