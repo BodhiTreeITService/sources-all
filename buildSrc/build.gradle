@@ -3,13 +3,19 @@ plugins {
 	id "io.spring.javaformat" version "${javaFormatVersion}"
 	id "checkstyle"
 	id "eclipse"
+
+	id "java"
+	id "groovy"
 }
 
 repositories {
 	mavenCentral()
 	gradlePluginPortal()
+	maven { url 'https://repo.spring.io/milestone' }
 }
-
+java {
+	sourceCompatibility = JavaVersion.VERSION_17
+}
 ext {
 	def propertiesFile = new File(new File("$projectDir").parentFile, "gradle.properties")
 	propertiesFile.withInputStream {
@@ -20,6 +26,17 @@ ext {
 }
 sourceCompatibility = 17
 targetCompatibility = 17
+
+sourceSets {
+	main {
+		java {
+			srcDirs = []
+		}
+		groovy {
+			srcDirs += ["src/main/java"]
+		}
+	}
+}
 
 def versions = [:]
 new File(projectDir.parentFile, "gradle.properties").withInputStream {
@@ -80,6 +97,42 @@ dependencies {
 	testImplementation("org.springframework:spring-test")
 
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+//	spring-security
+	implementation platform(libs.io.projectreactor.reactor.bom)
+
+	implementation libs.com.google.code.gson.gson
+	implementation libs.com.thaiopensource.trag
+	implementation libs.net.sourceforge.saxon.saxon
+	implementation libs.org.yaml.snakeyaml
+	implementation localGroovy()
+
+	implementation libs.io.github.gradle.nexus.publish.plugin
+	implementation 'io.projectreactor:reactor-core'
+	implementation libs.org.gretty.gretty
+	implementation libs.com.github.ben.manes.gradle.versions.plugin
+	implementation libs.com.github.spullara.mustache.java.compiler
+	implementation libs.io.spring.javaformat.spring.javaformat.gradle.plugin
+	implementation libs.io.spring.nohttp.nohttp.gradle
+	implementation (libs.net.sourceforge.htmlunit) {
+		exclude group: 'org.eclipse.jetty.websocket', module: 'websocket-client'
+	}
+	implementation libs.org.hidetake.gradle.ssh.plugin
+	implementation libs.org.jfrog.buildinfo.build.info.extractor.gradle
+	implementation libs.org.sonarsource.scanner.gradle.sonarqube.gradle.plugin
+	implementation libs.com.squareup.okhttp3.okhttp
+	implementation libs.io.spring.security.release.plugin
+
+	testImplementation platform(libs.org.junit.junit.bom)
+	testImplementation platform(libs.org.mockito.mockito.bom)
+	testImplementation "org.junit.jupiter:junit-jupiter-api"
+	testImplementation "org.junit.jupiter:junit-jupiter-params"
+	testImplementation "org.junit.jupiter:junit-jupiter-engine"
+	testImplementation libs.org.apache.commons.commons.io
+	testImplementation libs.org.assertj.assertj.core
+	testImplementation 'org.mockito:mockito-core'
+	testImplementation 'org.mockito:mockito-junit-jupiter'
+	testImplementation libs.com.squareup.okhttp3.mockwebserver
 }
 
 gradlePlugin {
@@ -164,7 +217,27 @@ gradlePlugin {
 			implementationClass = "org.springframework.boot.build.testing.TestFailuresPlugin"
 		}
 
-
+//		spring-security
+		trang {
+			id = "trang"
+			implementationClass = "trang.TrangPlugin"
+		}
+		locks {
+			id = "locks"
+			implementationClass = "lock.GlobalLockPlugin"
+		}
+		managementConfiguration {
+			id = "io.spring.convention.management-configuration"
+			implementationClass = "io.spring.gradle.convention.ManagementConfigurationPlugin"
+		}
+		s101 {
+			id = "s101"
+			implementationClass = "s101.S101Plugin"
+		}
+		verifyDependenciesVersions {
+			id = "org.springframework.security.versions.verify-dependencies-versions"
+			implementationClass = "org.springframework.security.convention.versions.VerifyDependenciesVersionsPlugin"
+		}
 	}
 }
 test {
@@ -175,4 +248,17 @@ eclipse.classpath.file.whenMerged {
 	def jreEntry = entries.find { it.path.contains("org.eclipse.jdt.launching.JRE_CONTAINER") }
 	jreEntry.entryAttributes['module'] = 'true'
 	jreEntry.entryAttributes['limit-modules'] = 'java.base'
+}
+configurations {
+	implementation {
+		exclude module: 'groovy-all'
+	}
+}
+tasks.named('test', Test).configure {
+	onlyIf { !project.hasProperty("buildSrc.skipTests") }
+	useJUnitPlatform()
+	jvmArgs(
+			'--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+			'--add-opens', 'java.base/java.util=ALL-UNNAMED'
+	)
 }

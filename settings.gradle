@@ -24,6 +24,12 @@ plugins {
 	id "io.spring.ge.conventions" version "0.0.15"
 	id "org.gradle.toolchains.foojay-resolver-convention" version "0.7.0"
 }
+dependencyResolutionManagement {
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/milestone" }
+	}
+}
 
 include "spring-aop"
 include "spring-aspects"
@@ -142,3 +148,45 @@ file("${rootDir}/spring-boot-project/spring-boot-starters").eachDirMatch(~/sprin
 file("${rootDir}/spring-boot-tests/spring-boot-smoke-tests").eachDirMatch(~/spring-boot-smoke-test.*/) {
 	include "spring-boot-tests:spring-boot-smoke-tests:${it.name}"
 }
+
+
+//----------------------spring security-----------------------
+FileTree buildFiles = fileTree(rootDir) {
+	List excludes = gradle.startParameter.projectProperties.get("excludeProjects")?.split(",")
+	include '**/*.gradle', '**/*.gradle.kts'
+	exclude 'build', '**/gradle', 'settings.gradle', 'buildSrc', '/build.gradle', '.*', 'out'
+	exclude '**/grails3'
+	if(excludes) {
+		exclude excludes
+	}
+}
+
+String rootDirPath = rootDir.absolutePath + File.separator
+buildFiles.each { File buildFile ->
+	if(buildFile.name.startsWith("spring-security")){
+		boolean isDefaultName = 'build.gradle'.equals(buildFile.name)
+		boolean isKotlin = buildFile.name.endsWith(".kts")
+		if(isDefaultName) {
+			String buildFilePath = buildFile.parentFile.absolutePath
+			String projectPath = buildFilePath.replace(rootDirPath, '').replace(File.separator, ':')
+			include projectPath
+		} else {
+			String projectName
+			if (isKotlin) {
+				projectName = buildFile.name.replace('.gradle.kts', '')
+			} else {
+				projectName = buildFile.name.replace('.gradle', '')
+			}
+			String projectPath = ':' + projectName;
+			include projectPath
+			def project = findProject("${projectPath}")
+			project.name = projectName
+			project.projectDir = buildFile.parentFile
+			project.buildFileName = buildFile.name
+		}
+	}
+}
+
+
+
+

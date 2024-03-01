@@ -1,3 +1,19 @@
+import io.spring.gradle.IncludeRepoTask
+import trang.RncToXsd
+
+buildscript {
+	dependencies {
+		classpath libs.io.spring.javaformat.spring.javaformat.gradle.plugin
+		classpath libs.io.spring.nohttp.nohttp.gradle
+		classpath libs.io.freefair.gradle.aspectj.plugin
+		classpath libs.org.jetbrains.kotlin.kotlin.gradle.plugin
+		classpath libs.com.netflix.nebula.nebula.project.plugin
+	}
+	repositories {
+		maven { url 'https://plugins.gradle.org/m2/' }
+	}
+}
+
 plugins {
 //	spring-framework
 	id 'io.freefair.aspectj' version '8.4' apply false
@@ -5,7 +21,8 @@ plugins {
 	id 'org.jetbrains.kotlin.plugin.serialization' version "${kotlinVersion}" apply false
 	id 'org.jetbrains.dokka' version '1.8.20'
 	id 'org.unbroken-dome.xjc' version '2.0.0' apply false
-	id 'com.github.ben-manes.versions' version '0.51.0'
+//	id 'com.github.ben-manes.versions' version '0.51.0'
+	id 'com.github.ben-manes.versions'
 	id 'com.github.johnrengelman.shadow' version '8.1.1' apply false
 //	id 'de.undercouch.download' version '5.4.0'
 	id 'de.undercouch.download'
@@ -17,18 +34,22 @@ plugins {
 	id "org.jetbrains.kotlin.jvm" apply false // https://youtrack.jetbrains.com/issue/KT-30276
 //	id "io.spring.nohttp" version "0.0.11"
 	id "io.spring.nohttp"
+
+//	spring security
+	alias(libs.plugins.org.gradle.wrapper.upgrade)
 }
 
 ext {
-	springbootProjects = subprojects.findAll { it.name.startsWith("spring-boot") }
-	springframeworkProjects = subprojects - springbootProjects
-	moduleProjects = springframeworkProjects.findAll { it.name.startsWith("spring-") }
-	javaProjects = springframeworkProjects.findAll { !it.name.startsWith("framework-") }
+	springBootProjects = subprojects.findAll { it.name.startsWith("spring-boot") }
+	springSecurityProjects = subprojects.findAll { it.name.startsWith("spring-security") }
+	springFrameworkProjects = subprojects - springBootProjects - springSecurityProjects
+	moduleProjects = springFrameworkProjects.findAll { it.name.startsWith("spring-") }
+	javaProjects = springFrameworkProjects.findAll { !it.name.startsWith("framework-") }
 
 
 //	moduleProjects = subprojects.findAll { it.name.startsWith("spring-") && !it.name.startsWith("spring-boot") }
 //	javaProjects = subprojects.findAll { !it.name.startsWith("framework-") && !it.name.startsWith("spring-boot") }
-//	springbootProjects = subprojects.findAll { it.name.startsWith("spring-boot") }
+//	springBootProjects = subprojects.findAll { it.name.startsWith("spring-boot") }
 }
 
 description = "sources"
@@ -37,6 +58,10 @@ configure(allprojects) { project ->
 	if(project.name.startsWith("spring-boot")){
 		group "org.springframework.boot"
 		version = springBootVersion
+	}
+	else if(project.name.startsWith("spring-security")){
+		group "org.springframework.security"
+		version = springSecurityVersion
 	}
 	else {
 		apply plugin: "org.springframework.build.localdev"
@@ -67,7 +92,7 @@ configure(allprojects) { project ->
 	}
 }
 
-configure(allprojects - project(":framework-platform") - springbootProjects) {
+configure(allprojects - project(":framework-platform") - springBootProjects -springSecurityProjects) {
 	configurations {
 		dependencyManagement {
 			canBeConsumed = false
@@ -183,4 +208,126 @@ check {
 
 tasks.named("checkstyleNohttp").configure {
 	maxHeapSize = "1536m"
+}
+
+
+
+apply plugin: 'io.spring.nohttp'
+apply plugin: 'locks'
+apply plugin: 's101'
+apply plugin: 'io.spring.convention.root'
+apply plugin: 'org.jetbrains.kotlin.jvm'
+apply plugin: 'org.springframework.security.versions.verify-dependencies-versions'
+apply plugin: 'io.spring.security.release'
+
+configure(springSecurityProjects){
+	group = 'org.springframework.security'
+	description = 'Spring Security'
+}
+println("---------------version-${springSecurityVersion}-------------")
+ext.snapshotBuild = springSecurityVersion.contains("SNAPSHOT")
+ext.releaseBuild = springSecurityVersion.contains("SNAPSHOT")
+ext.milestoneBuild = !(snapshotBuild || releaseBuild)
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/milestone" }
+}
+
+springRelease {
+	weekOfMonth = 3
+	dayOfWeek = 1
+	referenceDocUrl = "https://docs.spring.io/spring-security/reference/{version}/index.html"
+	apiDocUrl = "https://docs.spring.io/spring-security/docs/{version}/api/"
+	replaceSnapshotVersionInReferenceDocUrl = true
+}
+
+def toolchainVersion() {
+	if (project.hasProperty('testToolchain')) {
+		return project.property('testToolchain').toString().toInteger()
+	}
+	return 17
+}
+
+subprojects {
+	if (project.name.startsWith("spring-security")){
+		java {
+			toolchain {
+				languageVersion = JavaLanguageVersion.of(toolchainVersion())
+			}
+		}
+		kotlin {
+			jvmToolchain {
+				languageVersion = JavaLanguageVersion.of(17)
+			}
+		}
+		tasks.withType(JavaCompile).configureEach {
+			options.encoding = "UTF-8"
+			options.compilerArgs.add("-parameters")
+			options.release.set(17)
+		}
+	}
+
+}
+
+allprojects {
+	if (project.name.startsWith("spring-security")){
+		if (!['spring-security-bom', 'spring-security-docs'].contains(project.name)) {
+			apply plugin: 'io.spring.javaformat'
+			apply plugin: 'checkstyle'
+
+			pluginManager.withPlugin("io.spring.convention.checkstyle", { plugin ->
+				configure(plugin) {
+					dependencies {
+						checkstyle libs.io.spring.javaformat.spring.javaformat.checkstyle
+					}
+					checkstyle {
+						toolVersion = '8.34'
+					}
+				}
+			})
+
+			if (project.name.contains('sample')) {
+				tasks.whenTaskAdded { task ->
+					if (task.name.contains('format') || task.name.contains('checkFormat') || task.name.contains("checkstyle")) {
+						task.enabled = false
+					}
+				}
+			}
+		}
+	}
+
+}
+
+if (hasProperty('buildScan')) {
+	buildScan {
+		termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+		termsOfServiceAgree = 'yes'
+	}
+}
+
+nohttp {
+	source.exclude "buildSrc/build/**"
+	source.builtBy(project(':spring-security-config').tasks.withType(RncToXsd))
+}
+
+tasks.register('cloneRepository', IncludeRepoTask) {
+	repository = project.getProperties().get("repositoryName")
+	ref = project.getProperties().get("ref")
+	var defaultDirectory = project.file("build/tmp/clone")
+	outputDirectory = project.hasProperty("cloneOutputDirectory") ? project.file("$cloneOutputDirectory") : defaultDirectory
+}
+
+s101 {
+	repository = 'https://structure101.com/binaries/latest'
+	configurationDirectory = project.file("etc/s101")
+}
+
+wrapperUpgrade {
+	gradle {
+		'spring-security' {
+			repo = 'spring-projects/spring-security'
+			baseBranch = '6.1.x' // runs only on 6.1.x and the update is merged forward to main
+		}
+	}
 }
