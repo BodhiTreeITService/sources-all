@@ -84,7 +84,7 @@ dependencies {
 	optional(project(":spring-web"))
 	optional(project(":spring-webflux"))
 	optional(project(":spring-webmvc"))
-	optional("org.springframework.security:spring-security-web")
+	optional(project(":spring-security-web"))
 	optional("org.springframework.ws:spring-ws-core") {
 		exclude group: "com.sun.mail", module: "jakarta.mail"
 		exclude group: "jakarta.platform", module: "jakarta.jakartaee-api"

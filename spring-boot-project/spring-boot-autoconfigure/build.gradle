@@ -26,7 +26,7 @@ dependencies {
 	optional("com.hazelcast:hazelcast")
 	optional("com.hazelcast:hazelcast-spring")
 	optional("com.h2database:h2")
-	optional("com.nimbusds:oauth2-oidc-sdk")
+	optional("com.nimbusds:oauth2-oidc-sdk:9.43.3")
 	optional("com.oracle.database.jdbc:ojdbc11")
 	optional("com.oracle.database.jdbc:ucp11")
 	optional("com.querydsl:querydsl-core")
@@ -172,23 +172,23 @@ dependencies {
 	optional("org.springframework.hateoas:spring-hateoas")
 	optional("org.springframework.pulsar:spring-pulsar")
 	optional("org.springframework.pulsar:spring-pulsar-reactive")
-	optional("org.springframework.security:spring-security-acl")
-	optional("org.springframework.security:spring-security-config")
-	optional("org.springframework.security:spring-security-data") {
+	optional(project(":spring-security-acl"))
+	optional(project(":spring-security-config"))
+	optional(project(":spring-security-data")) {
 		exclude group: "javax.xml.bind", module: "jaxb-api"
 	}
-	optional("org.springframework.security:spring-security-messaging")
+	optional(project(":spring-security-messaging"))
 	optional("org.springframework.security:spring-security-oauth2-authorization-server")
-	optional("org.springframework.security:spring-security-oauth2-client")
-	optional("org.springframework.security:spring-security-oauth2-jose")
-	optional("org.springframework.security:spring-security-oauth2-resource-server")
-	optional("org.springframework.security:spring-security-rsocket")
-	optional("org.springframework.security:spring-security-saml2-service-provider") {
+	optional(project(":spring-security-oauth2-client"))
+	optional(project(":spring-security-oauth2-jose"))
+	optional(project(":spring-security-oauth2-resource-server"))
+	optional(project(":spring-security-rsocket"))
+	optional(project(":spring-security-saml2-service-provider")) {
 		exclude group: "org.opensaml", module: "opensaml-core"
 		exclude group: "org.opensaml", module: "opensaml-saml-api"
 		exclude group: "org.opensaml", module: "opensaml-saml-impl"
 	}
-	optional("org.springframework.security:spring-security-web")
+	optional(project(":spring-security-web"))
 	optional("org.springframework.session:spring-session-core")
 	optional("org.springframework.session:spring-session-data-mongodb")
 	optional("org.springframework.session:spring-session-data-redis")
@@ -244,7 +244,7 @@ dependencies {
 		exclude group: "commons-logging", module: "commons-logging"
 	}
 	testImplementation("org.springframework.pulsar:spring-pulsar-cache-provider-caffeine")
-	testImplementation("org.springframework.security:spring-security-test")
+	testImplementation(project(":spring-security-test"))
 	testImplementation("org.testcontainers:cassandra")
 	testImplementation("org.testcontainers:couchbase")
 	testImplementation("org.testcontainers:elasticsearch")

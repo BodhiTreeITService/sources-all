@@ -27,7 +27,7 @@ dependencies {
 	testImplementation platform(project(':spring-security-dependencies'))
 	testImplementation 'com.unboundid:unboundid-ldapsdk'
 	testImplementation 'org.apache.directory.server:apacheds-core'
-	testImplementation 'org.springframework:spring-core'
+	testImplementation project(':spring-core')
 }
 
 def generateAttributes() {

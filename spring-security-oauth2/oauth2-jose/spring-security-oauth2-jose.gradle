@@ -4,11 +4,11 @@ dependencies {
 	management platform(project(":spring-security-dependencies"))
 	api project(':spring-security-core')
 	api project(':spring-security-oauth2-core')
-	api 'org.springframework:spring-core'
-	api 'com.nimbusds:nimbus-jose-jwt'
+	api project(':spring-core')
+	api 'com.nimbusds:nimbus-jose-jwt:9.37.3'
 
 	optional 'io.projectreactor:reactor-core'
-	optional 'org.springframework:spring-webflux'
+	optional project(':spring-webflux')
 
 	testImplementation 'com.squareup.okhttp3:mockwebserver'
 	testImplementation 'io.projectreactor.netty:reactor-netty'
@@ -19,5 +19,5 @@ dependencies {
 	testImplementation "org.junit.jupiter:junit-jupiter-engine"
 	testImplementation "org.mockito:mockito-core"
 	testImplementation "org.mockito:mockito-junit-jupiter"
-	testImplementation "org.springframework:spring-test"
+	testImplementation project(":spring-test")
 }

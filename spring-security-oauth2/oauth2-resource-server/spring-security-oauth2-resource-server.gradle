@@ -5,12 +5,12 @@ dependencies {
 	api project(':spring-security-core')
 	api project(':spring-security-oauth2-core')
 	api project(':spring-security-web')
-	api 'org.springframework:spring-core'
+	api project(':spring-core')
 
 	optional project(':spring-security-oauth2-jose')
-	optional 'com.nimbusds:oauth2-oidc-sdk'
+	optional 'com.nimbusds:oauth2-oidc-sdk:9.43.3'
 	optional 'io.projectreactor:reactor-core'
-	optional 'org.springframework:spring-webflux'
+	optional project(':spring-webflux')
 
 	provided 'jakarta.servlet:jakarta.servlet-api'
 
@@ -25,5 +25,5 @@ dependencies {
 	testImplementation "org.junit.jupiter:junit-jupiter-engine"
 	testImplementation "org.mockito:mockito-core"
 	testImplementation "org.mockito:mockito-junit-jupiter"
-	testImplementation "org.springframework:spring-test"
+	testImplementation project(":spring-test")
 }

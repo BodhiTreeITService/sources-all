@@ -7,6 +7,6 @@ description = "Starter for using Spring Security"
 dependencies {
 	api(project(":spring-boot-project:spring-boot-starters:spring-boot-starter"))
 	api(project(":spring-aop"))
-	api("org.springframework.security:spring-security-config")
-	api("org.springframework.security:spring-security-web")
+	api(project(":spring-security-config"))
+	api(project(":spring-security-web"))
 }

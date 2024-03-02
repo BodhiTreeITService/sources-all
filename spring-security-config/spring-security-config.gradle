@@ -5,15 +5,17 @@ import trang.RncToXsd
 apply plugin: 'io.spring.convention.spring-module'
 apply plugin: 'trang'
 apply plugin: 'kotlin'
-
+tasks.compileJava {
+	options.compilerArgs += ["-Xlint:deprecation", "-Xlint:unchecked"]
+}
 dependencies {
 	management platform(project(":spring-security-dependencies"))
 	// NB: Don't add other compile time dependencies to the config module as this breaks tooling
 	api project(':spring-security-core')
-	api 'org.springframework:spring-aop'
-	api 'org.springframework:spring-beans'
-	api 'org.springframework:spring-context'
-	api 'org.springframework:spring-core'
+	api project(':spring-aop')
+	api project(':spring-beans')
+	api project(':spring-context')
+	api project(':spring-core')
 
 	optional project(':spring-security-ldap')
 	optional project(':spring-security-messaging')
@@ -25,13 +27,13 @@ dependencies {
 	optional project(':spring-security-web')
 	optional 'io.projectreactor:reactor-core'
 	optional 'org.aspectj:aspectjweaver'
-	optional 'org.springframework:spring-jdbc'
-	optional 'org.springframework:spring-messaging'
-	optional 'org.springframework:spring-tx'
-	optional 'org.springframework:spring-webmvc'
-	optional'org.springframework:spring-web'
-	optional'org.springframework:spring-webflux'
-	optional'org.springframework:spring-websocket'
+	optional project(':spring-jdbc')
+	optional project(':spring-messaging')
+	optional project(':spring-tx')
+	optional project(':spring-webmvc')
+	optional project(':spring-web')
+	optional project(':spring-webflux')
+	optional project(':spring-websocket')
 	optional 'org.jetbrains.kotlin:kotlin-reflect'
 	optional 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
 	optional 'jakarta.annotation:jakarta.annotation-api'
@@ -55,7 +57,7 @@ dependencies {
 	testImplementation "org.junit.jupiter:junit-jupiter-engine"
 	testImplementation "org.mockito:mockito-core"
 	testImplementation "org.mockito:mockito-junit-jupiter"
-	testImplementation "org.springframework:spring-test"
+	testImplementation project(":spring-test")
 	testImplementation 'com.squareup.okhttp3:mockwebserver'
 	testImplementation 'ch.qos.logback:logback-classic'
 	testImplementation 'io.projectreactor.netty:reactor-netty'
@@ -89,11 +91,11 @@ dependencies {
 		exclude group: 'io.netty', module: 'netty'
 	}
 	testImplementation 'org.springframework.ldap:spring-ldap-core'
-	testImplementation 'org.springframework:spring-expression'
-	testImplementation 'org.springframework:spring-jdbc'
-	testImplementation 'org.springframework:spring-orm'
-	testImplementation 'org.springframework:spring-tx'
-	testImplementation 'org.springframework:spring-core-test'
+	testImplementation project(':spring-expression')
+	testImplementation project(':spring-jdbc')
+	testImplementation project(':spring-orm')
+	testImplementation project(':spring-tx')
+	testImplementation project(':spring-core-test')
 	testImplementation ('org.springframework.data:spring-data-jpa') {
 		exclude group: 'org.aspectj', module: 'aspectjrt'
 	}

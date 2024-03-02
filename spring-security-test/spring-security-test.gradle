@@ -4,16 +4,16 @@ dependencies {
 	management platform(project(":spring-security-dependencies"))
 	api project(':spring-security-core')
 	api project(':spring-security-web')
-	api 'org.springframework:spring-core'
-	api 'org.springframework:spring-test'
+	api project(':spring-core')
+	api project(':spring-test')
 
 	optional project(':spring-security-config')
 	optional project(':spring-security-oauth2-client')
 	optional project(':spring-security-oauth2-jose')
 	optional project(':spring-security-oauth2-resource-server')
 	optional 'io.projectreactor:reactor-core'
-	optional 'org.springframework:spring-webmvc'
-	optional 'org.springframework:spring-webflux'
+	optional project(':spring-webmvc')
+	optional project(':spring-webflux')
 
 	provided 'jakarta.servlet:jakarta.servlet-api'
 
@@ -28,8 +28,8 @@ dependencies {
 	testImplementation "org.junit.jupiter:junit-jupiter-engine"
 	testImplementation "org.mockito:mockito-core"
 	testImplementation "org.mockito:mockito-junit-jupiter"
-	testImplementation "org.springframework:spring-test"
+	testImplementation project(":spring-test")
 	testImplementation 'org.skyscreamer:jsonassert'
-	testImplementation 'org.springframework:spring-webmvc'
-	testImplementation 'org.springframework:spring-tx'
+	testImplementation project(':spring-webmvc')
+	testImplementation project(':spring-tx')
 }

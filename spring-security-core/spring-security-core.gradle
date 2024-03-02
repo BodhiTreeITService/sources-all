@@ -5,19 +5,19 @@ apply plugin: 'io.spring.convention.spring-module'
 dependencies {
 	management platform(project(":spring-security-dependencies"))
 	api project(':spring-security-crypto')
-	api 'org.springframework:spring-aop'
-	api 'org.springframework:spring-beans'
-	api 'org.springframework:spring-context'
-	api 'org.springframework:spring-core'
-	api 'org.springframework:spring-expression'
+	api project(':spring-aop')
+	api project(':spring-beans')
+	api project(':spring-context')
+	api project(':spring-core')
+	api project(':spring-expression')
 	api 'io.micrometer:micrometer-observation'
 
 	optional 'com.fasterxml.jackson.core:jackson-databind'
 	optional 'io.projectreactor:reactor-core'
 	optional 'jakarta.annotation:jakarta.annotation-api'
 	optional 'org.aspectj:aspectjrt'
-	optional 'org.springframework:spring-jdbc'
-	optional 'org.springframework:spring-tx'
+	optional project(':spring-jdbc')
+	optional project(':spring-tx')
 	optional 'org.jetbrains.kotlinx:kotlinx-coroutines-reactor'
 
 	testImplementation 'commons-collections:commons-collections'
@@ -28,9 +28,9 @@ dependencies {
 	testImplementation "org.junit.jupiter:junit-jupiter-engine"
 	testImplementation "org.mockito:mockito-core"
 	testImplementation "org.mockito:mockito-junit-jupiter"
-	testImplementation "org.springframework:spring-test"
+	testImplementation project(":spring-test")
 	testImplementation 'org.skyscreamer:jsonassert'
-	testImplementation 'org.springframework:spring-test'
+	testImplementation project(':spring-test')
 
 	testRuntimeOnly 'org.hsqldb:hsqldb'
 }

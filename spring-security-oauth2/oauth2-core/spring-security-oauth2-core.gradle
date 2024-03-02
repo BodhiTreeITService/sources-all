@@ -3,12 +3,12 @@ apply plugin: 'io.spring.convention.spring-module'
 dependencies {
 	management platform(project(":spring-security-dependencies"))
 	api project(':spring-security-core')
-	api 'org.springframework:spring-core'
-	api 'org.springframework:spring-web'
+	api project(':spring-core')
+	api project(':spring-web')
 
 	optional 'com.fasterxml.jackson.core:jackson-databind'
-	optional 'com.nimbusds:oauth2-oidc-sdk'
-	optional 'org.springframework:spring-webflux'
+	optional 'com.nimbusds:oauth2-oidc-sdk:9.43.3'
+	optional project(':spring-webflux')
 
 	testImplementation "org.assertj:assertj-core"
 	testImplementation "org.junit.jupiter:junit-jupiter-api"
@@ -16,5 +16,5 @@ dependencies {
 	testImplementation "org.junit.jupiter:junit-jupiter-engine"
 	testImplementation "org.mockito:mockito-core"
 	testImplementation "org.mockito:mockito-junit-jupiter"
-	testImplementation "org.springframework:spring-test"
+	testImplementation project(":spring-test")
 }

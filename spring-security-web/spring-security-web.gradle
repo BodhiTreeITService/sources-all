@@ -3,19 +3,19 @@ apply plugin: 'io.spring.convention.spring-module'
 dependencies {
 	management platform(project(":spring-security-dependencies"))
 	api project(':spring-security-core')
-	api 'org.springframework:spring-core'
-	api 'org.springframework:spring-aop'
-	api 'org.springframework:spring-beans'
-	api 'org.springframework:spring-context'
-	api 'org.springframework:spring-expression'
-	api 'org.springframework:spring-web'
+	api project(':spring-core')
+	api project(':spring-aop')
+	api project(':spring-beans')
+	api project(':spring-context')
+	api project(':spring-expression')
+	api project(':spring-web')
 
 	optional 'com.fasterxml.jackson.core:jackson-databind'
 	optional 'io.projectreactor:reactor-core'
-	optional 'org.springframework:spring-jdbc'
-	optional 'org.springframework:spring-tx'
-	optional 'org.springframework:spring-webflux'
-	optional 'org.springframework:spring-webmvc'
+	optional project(':spring-jdbc')
+	optional project(':spring-tx')
+	optional project(':spring-webflux')
+	optional project(':spring-webmvc')
 
 	provided 'jakarta.servlet:jakarta.servlet-api'
 
@@ -27,7 +27,7 @@ dependencies {
 	testImplementation 'org.hamcrest:hamcrest'
 	testImplementation 'org.mockito:mockito-core'
 	testImplementation 'org.skyscreamer:jsonassert'
-	testImplementation 'org.springframework:spring-webflux'
+	testImplementation project(':spring-webflux')
 	testImplementation 'org.synchronoss.cloud:nio-multipart-parser'
 	testImplementation "org.assertj:assertj-core"
 	testImplementation "org.junit.jupiter:junit-jupiter-api"
@@ -35,7 +35,7 @@ dependencies {
 	testImplementation "org.junit.jupiter:junit-jupiter-engine"
 	testImplementation "org.mockito:mockito-core"
 	testImplementation "org.mockito:mockito-junit-jupiter"
-	testImplementation "org.springframework:spring-test"
+	testImplementation project(":spring-test")
 
 	testRuntimeOnly 'org.hsqldb:hsqldb'
 }

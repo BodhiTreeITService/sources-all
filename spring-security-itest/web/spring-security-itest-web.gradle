@@ -2,8 +2,8 @@ apply plugin: 'io.spring.convention.spring-test'
 
 dependencies {
 	implementation platform(project(":spring-security-dependencies"))
-	implementation 'org.springframework:spring-context'
-	implementation 'org.springframework:spring-web'
+	implementation project(':spring-context')
+	implementation project(':spring-web')
 
 	compileOnly 'jakarta.servlet:jakarta.servlet-api'
 
@@ -11,16 +11,16 @@ dependencies {
 	testImplementation project(':spring-security-test')
 	testImplementation project(':spring-security-web')
 	testImplementation 'org.hamcrest:hamcrest'
-	testImplementation 'org.springframework:spring-beans'
-	testImplementation 'org.springframework:spring-test'
-	testImplementation 'org.springframework:spring-webmvc'
+	testImplementation project(':spring-beans')
+	testImplementation project(':spring-test')
+	testImplementation project(':spring-webmvc')
 	testImplementation "org.assertj:assertj-core"
 	testImplementation "org.junit.jupiter:junit-jupiter-api"
 	testImplementation "org.junit.jupiter:junit-jupiter-params"
 	testImplementation "org.junit.jupiter:junit-jupiter-engine"
 	testImplementation "org.mockito:mockito-core"
 	testImplementation "org.mockito:mockito-junit-jupiter"
-	testImplementation "org.springframework:spring-test"
+	testImplementation project(":spring-test")
 	testImplementation 'jakarta.servlet:jakarta.servlet-api'
 
 	testRuntimeOnly project(':spring-security-config')

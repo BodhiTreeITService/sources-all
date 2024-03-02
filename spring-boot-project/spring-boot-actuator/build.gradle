@@ -75,8 +75,8 @@ dependencies {
 	optional("org.springframework.data:spring-data-redis")
 	optional("org.springframework.data:spring-data-rest-webmvc")
 	optional("org.springframework.integration:spring-integration-core")
-	optional("org.springframework.security:spring-security-core")
-	optional("org.springframework.security:spring-security-web")
+	optional(project(":spring-security-core"))
+	optional(project(":spring-security-web"))
 	optional("org.springframework.session:spring-session-core")
 
 	testImplementation(project(":spring-boot-project:spring-boot-test"))

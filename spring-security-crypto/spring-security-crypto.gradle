@@ -2,8 +2,8 @@ apply plugin: 'io.spring.convention.spring-module'
 
 dependencies {
 	management platform(project(":spring-security-dependencies"))
-	optional 'org.springframework:spring-jcl'
-	optional 'org.springframework:spring-core'
+	optional project(':spring-jcl')
+	optional project(':spring-core')
 	optional 'org.bouncycastle:bcpkix-jdk15on'
 
 	testImplementation "org.assertj:assertj-core"
@@ -12,5 +12,5 @@ dependencies {
 	testImplementation "org.junit.jupiter:junit-jupiter-engine"
 	testImplementation "org.mockito:mockito-core"
 	testImplementation "org.mockito:mockito-junit-jupiter"
-	testImplementation "org.springframework:spring-test"
+	testImplementation project(":spring-test")
 }

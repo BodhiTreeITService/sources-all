@@ -5,7 +5,7 @@ dependencies {
 	api project(':spring-security-core')
 	api 'jakarta.xml.bind:jakarta.xml.bind-api'
 	api 'org.springframework.data:spring-data-commons'
-	api 'org.springframework:spring-core'
+	api project(':spring-core')
 	
 	testImplementation "org.assertj:assertj-core"
 	testImplementation "org.junit.jupiter:junit-jupiter-api"
@@ -13,6 +13,6 @@ dependencies {
 	testImplementation "org.junit.jupiter:junit-jupiter-engine"
 	testImplementation "org.mockito:mockito-core"
 	testImplementation "org.mockito:mockito-junit-jupiter"
-	testImplementation "org.springframework:spring-test"
+	testImplementation project(":spring-test")
 
 }

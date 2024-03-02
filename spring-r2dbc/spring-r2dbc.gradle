@@ -7,7 +7,7 @@ dependencies {
 	api(project(":spring-core"))
 	api(project(":spring-tx"))
 	api("io.projectreactor:reactor-core")
-	api("io.r2dbc:r2dbc-spi")
+	api("io.r2dbc:r2dbc-spi:1.0.0.RELEASE")
 	optional("org.jetbrains.kotlin:kotlin-reflect")
 	optional("org.jetbrains.kotlin:kotlin-stdlib")
 	optional("org.jetbrains.kotlinx:kotlinx-coroutines-core")

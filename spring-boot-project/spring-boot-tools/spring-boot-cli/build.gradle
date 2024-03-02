@@ -28,7 +28,7 @@ dependencies {
 	implementation("org.apache.httpcomponents.client5:httpclient5")
 	implementation("org.slf4j:slf4j-simple")
 	implementation(project(":spring-core"))
-	implementation("org.springframework.security:spring-security-crypto")
+	implementation(project(":spring-security-crypto"))
 
 	intTestImplementation(project(":spring-boot-project:spring-boot-tools:spring-boot-test-support"))
 	intTestImplementation("org.assertj:assertj-core")

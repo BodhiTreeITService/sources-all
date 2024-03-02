@@ -11,11 +11,13 @@ dependencies {
 		def springFrameworkVersion = project.property("springFrameworkVersion")
 		def reactorVersion = project.property("reactorVersion")
 		def springDataVersion = project.property("springDataVersion")
-		api platform("org.springframework:spring-framework-bom:$springFrameworkVersion")
+//		api platform("org.springframework:spring-framework-bom:$springFrameworkVersion")
+		api(platform(project(path: ":framework-bom")))
 		api platform("io.projectreactor:reactor-bom:$reactorVersion")
 		api platform("org.springframework.data:spring-data-bom:$springDataVersion")
 	} else {
-		api platform(libs.org.springframework.spring.framework.bom)
+//		api platform(libs.org.springframework.spring.framework.bom)
+		api(platform(project(path: ":framework-bom")))
 		api platform(libs.io.projectreactor.reactor.bom)
 		api platform(libs.org.springframework.data.spring.data.bom)
 	}

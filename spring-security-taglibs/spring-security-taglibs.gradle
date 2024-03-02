@@ -5,12 +5,12 @@ dependencies {
 	api project(':spring-security-acl')
 	api project(':spring-security-core')
 	api project(':spring-security-web')
-	api 'org.springframework:spring-aop'
-	api 'org.springframework:spring-beans'
-	api 'org.springframework:spring-context'
-	api 'org.springframework:spring-core'
-	api 'org.springframework:spring-expression'
-	api 'org.springframework:spring-web'
+	api project(':spring-aop')
+	api project(':spring-beans')
+	api project(':spring-context')
+	api project(':spring-core')
+	api project(':spring-expression')
+	api project(':spring-web')
 
 	provided 'jakarta.servlet.jsp:jakarta.servlet.jsp-api'
 	provided 'jakarta.servlet:jakarta.servlet-api'
@@ -23,7 +23,7 @@ dependencies {
 	testImplementation "org.junit.jupiter:junit-jupiter-engine"
 	testImplementation "org.mockito:mockito-core"
 	testImplementation "org.mockito:mockito-junit-jupiter"
-	testImplementation "org.springframework:spring-test"
+	testImplementation project(":spring-test")
 }
 
 configure(project.tasks.withType(Test)) {
