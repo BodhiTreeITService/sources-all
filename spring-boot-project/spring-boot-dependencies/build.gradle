@@ -814,7 +814,7 @@ bom {
 			]
 		}
 	}
-	library("Kotlin Serialization", "1.6.3") {
+	library("Kotlin Serialization", "1.6.0") {
 		group("org.jetbrains.kotlinx") {
 			imports = [
 				"kotlinx-serialization-bom"
@@ -1017,7 +1017,7 @@ bom {
 			]
 		}
 	}
-	library("Mockito", "5.7.0") {
+	library("Mockito", "5.10.0") {
 		group("org.mockito") {
 			imports = [
 				"mockito-bom"

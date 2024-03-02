@@ -186,7 +186,12 @@ buildFiles.each { File buildFile ->
 		}
 	}
 }
+//include 'sourecsdemo'
+//include 'sourcesApp'
 
-
-
+//include ":SourceAppDemos"
+//project(":SourceAppDemos").buildFileName = "build-local.gradle"
+//include 'bodhi-projects'
+//include 'bodhi-projects:AppDemos'
+//findProject(':bodhi-projects:AppDemos')?.name = 'AppDemos'
 

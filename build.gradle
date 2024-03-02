@@ -37,6 +37,25 @@ plugins {
 
 //	spring security
 	alias(libs.plugins.org.gradle.wrapper.upgrade)
+
+//  sources-all
+	id "war"
+	id "org.springframework.boot.conventions"
+}
+configurations {
+	providedRuntime {
+		extendsFrom dependencyManagement
+	}
+}
+dependencies {
+	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-web"))
+//	implementation project(":spring-boot-project:spring-boot-starters:spring-boot-starter-tomcat")
+
+	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-test"))
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
 }
 
 ext {
