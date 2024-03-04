@@ -10,7 +10,7 @@ dependencies {
 	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-webflux"))
 
 	runtimeOnly(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-data-mongodb-reactive"))
-	runtimeOnly("org.springframework.session:spring-session-data-mongodb")
+	runtimeOnly(project(":spring-session-data-mongodb"))
 
 	testImplementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-test"))
 	testImplementation(project(":spring-boot-project:spring-boot-testcontainers"))

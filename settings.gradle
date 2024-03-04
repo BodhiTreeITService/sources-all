@@ -186,6 +186,28 @@ buildFiles.each { File buildFile ->
 		}
 	}
 }
+
+
+include 'spring-session-dependencies'
+include 'spring-session-bom'
+include 'spring-session-core'
+include 'spring-session-data-mongodb'
+include 'spring-session-data-redis'
+include 'spring-session-docs'
+include 'spring-session-hazelcast'
+include 'spring-session-jdbc'
+
+file('spring-session-samples').eachDirMatch(~/spring-session-sample-.*/) { dir ->
+	include dir.name
+	project(":$dir.name").projectDir = dir
+}
+
+rootProject.children.each { project ->
+	if(project.name.startsWith("spring-session"))
+	{
+		project.buildFileName = "${project.name}.gradle"
+	}
+}
 //include 'sourecsdemo'
 //include 'sourcesApp'
 

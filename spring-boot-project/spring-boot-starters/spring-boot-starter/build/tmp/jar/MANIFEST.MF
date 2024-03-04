@@ -4,6 +4,6 @@ Build-Jdk-Spec: 17
 Built-By: Spring
 Implementation-Title: Core starter, including auto-configuration support
  , logging and YAML
-Implementation-Version: 3.2.3-SNAPSHOT
+Implementation-Version: 3.3.0-SNAPSHOT
 Spring-Boot-Jar-Type: dependencies-starter
 

@@ -19,5 +19,5 @@ dependencies {
 	testImplementation(testFixtures(project(":spring-web")))
 	testImplementation("org.aspectj:aspectjweaver")
 	testImplementation("org.hsqldb:hsqldb")
-	testRuntimeOnly("jakarta.xml.bind:jakarta.xml.bind-api")
+	testRuntimeOnly("jakarta.xml.bind:jakarta.xml.bind-api:4.0.1")
 }

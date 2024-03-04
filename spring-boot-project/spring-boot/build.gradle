@@ -21,7 +21,7 @@ dependencies {
 	api(project(":spring-core"))
 	api(project(":spring-context"))
 
-	optional("ch.qos.logback:logback-classic")
+	optional("ch.qos.logback:logback-classic:1.4.14")
 	optional("com.fasterxml.jackson.core:jackson-databind")
 	optional("com.h2database:h2")
 	optional("com.google.code.gson:gson")
@@ -46,11 +46,11 @@ dependencies {
 	optional("org.apache.commons:commons-dbcp2") {
 		exclude(group: "commons-logging", module: "commons-logging")
 	}
-	optional("org.apache.httpcomponents.client5:httpclient5")
+	optional("org.apache.httpcomponents.client5:httpclient5:5.3.1")
 	optional("org.apache.logging.log4j:log4j-api")
 	optional("org.apache.logging.log4j:log4j-core")
 	optional("org.apache.logging.log4j:log4j-jul")
-	optional("org.apache.tomcat.embed:tomcat-embed-core")
+	optional("org.apache.tomcat.embed:tomcat-embed-core:10.1.18")
 	optional("org.apache.tomcat.embed:tomcat-embed-jasper")
 	optional("org.apache.tomcat:tomcat-jdbc")
 	optional("org.assertj:assertj-core")
@@ -65,8 +65,8 @@ dependencies {
 	optional("org.eclipse.jetty.http2:jetty-http2-server")
 	optional("org.flywaydb:flyway-core")
 	optional("org.hamcrest:hamcrest-library")
-	optional("org.hibernate.orm:hibernate-core")
-	optional("org.hibernate.validator:hibernate-validator")
+	optional("org.hibernate.orm:hibernate-core:6.4.4.Final")
+	optional("org.hibernate.validator:hibernate-validator:8.0.1.Final")
 	optional("org.jooq:jooq") {
 		exclude(group: "javax.xml.bind", module: "jaxb-api")
 	}
@@ -74,7 +74,7 @@ dependencies {
 		exclude(group: "javax.xml.bind", module: "jaxb-api")
 	}
 	optional("org.postgresql:postgresql")
-	optional("org.slf4j:jul-to-slf4j")
+	optional("org.slf4j:jul-to-slf4j:2.0.12")
 	optional("org.slf4j:slf4j-api")
 	optional(project(":spring-messaging"))
 	optional(project(":spring-orm"))
@@ -92,14 +92,14 @@ dependencies {
 		exclude group: "org.eclipse.jetty", module: "jetty-servlet"
 		exclude group: "jakarta.mail", module: "jakarta.mail-api"
 	}
-	optional("org.yaml:snakeyaml")
+	optional("org.yaml:snakeyaml:2.2")
 	optional("org.jetbrains.kotlin:kotlin-reflect")
 	optional("org.jetbrains.kotlin:kotlin-stdlib")
 
 	testImplementation(project(":spring-boot-project:spring-boot-tools:spring-boot-test-support"))
 	testImplementation(project(":spring-core-test"))
 	testImplementation("com.ibm.db2:jcc")
-	testImplementation("com.jayway.jsonpath:json-path")
+	testImplementation("com.jayway.jsonpath:json-path:2.9.0")
 	testImplementation("com.microsoft.sqlserver:mssql-jdbc")
 	testImplementation("com.mysql:mysql-connector-j")
 	testImplementation("com.squareup.okhttp3:okhttp")

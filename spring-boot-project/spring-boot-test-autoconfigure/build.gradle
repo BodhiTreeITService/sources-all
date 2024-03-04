@@ -18,14 +18,14 @@ dependencies {
 	optional("jakarta.transaction:jakarta.transaction-api")
 	optional("com.fasterxml.jackson.core:jackson-databind")
 	optional("com.google.code.gson:gson")
-	optional("com.jayway.jsonpath:json-path")
+	optional("com.jayway.jsonpath:json-path:2.9.0")
 	optional("com.sun.xml.messaging.saaj:saaj-impl")
 	optional("net.sourceforge.htmlunit:htmlunit") {
 		exclude group: "commons-logging", module: "commons-logging"
 	}
-	optional("org.hibernate.orm:hibernate-core")
+	optional("org.hibernate.orm:hibernate-core:6.4.4.Final")
 	optional("org.junit.jupiter:junit-jupiter-api")
-	optional("org.seleniumhq.selenium:htmlunit-driver") {
+	optional("org.seleniumhq.selenium:htmlunit-driver:2.70.0") {
 		exclude(group: "commons-logging", module: "commons-logging")
 		exclude(group: "com.sun.activation", module: "jakarta.activation")
 	}
@@ -55,7 +55,7 @@ dependencies {
 	optional(project(":spring-security-test"))
 	optional("org.springframework.ws:spring-ws-core")
 	optional("org.springframework.ws:spring-ws-test")
-	optional("org.apache.tomcat.embed:tomcat-embed-core")
+	optional("org.apache.tomcat.embed:tomcat-embed-core:10.1.18")
 	optional("org.mongodb:mongodb-driver-reactivestreams")
 	optional("org.mongodb:mongodb-driver-sync")
 	optional("io.micrometer:micrometer-tracing")
@@ -64,7 +64,7 @@ dependencies {
 	testImplementation(project(":spring-boot-project:spring-boot-actuator-autoconfigure"))
 	testImplementation(project(":spring-boot-project:spring-boot-tools:spring-boot-test-support"))
 	testImplementation(project(":spring-boot-project:spring-boot-testcontainers"))
-	testImplementation("ch.qos.logback:logback-classic")
+	testImplementation("ch.qos.logback:logback-classic:1.4.14")
 	testImplementation("com.fasterxml.jackson.module:jackson-module-parameter-names")
 	testImplementation("com.h2database:h2")
 	testImplementation("com.unboundid:unboundid-ldapsdk")
@@ -76,13 +76,13 @@ dependencies {
 	testImplementation("io.r2dbc:r2dbc-h2")
 	testImplementation("jakarta.json:jakarta.json-api")
 	testImplementation("org.apache.commons:commons-pool2")
-	testImplementation("org.apache.tomcat.embed:tomcat-embed-el")
+	testImplementation("org.apache.tomcat.embed:tomcat-embed-el:10.1.18")
 	testImplementation("org.aspectj:aspectjrt")
 	testImplementation("org.aspectj:aspectjweaver")
 	testImplementation("org.assertj:assertj-core")
 	testImplementation("org.awaitility:awaitility")
 	testImplementation("org.eclipse:yasson")
-	testImplementation("org.hibernate.validator:hibernate-validator")
+	testImplementation("org.hibernate.validator:hibernate-validator:8.0.1.Final")
 	testImplementation("org.hsqldb:hsqldb")
 	testImplementation("org.jooq:jooq") {
 		exclude group: "javax.xml.bind", module: "jaxb-api"
@@ -92,7 +92,7 @@ dependencies {
 	testImplementation("org.junit.platform:junit-platform-launcher")
 	testImplementation("org.mockito:mockito-core")
 	testImplementation("org.mockito:mockito-junit-jupiter")
-	testImplementation("org.skyscreamer:jsonassert")
+	testImplementation("org.skyscreamer:jsonassert:1.5.1")
 	testImplementation(project(":spring-core-test"))
 	testImplementation("org.springframework.hateoas:spring-hateoas")
 	testImplementation("org.springframework.plugin:spring-plugin-core")

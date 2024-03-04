@@ -17,7 +17,7 @@ dependencies {
 	testImplementation(project(":spring-test"))
 	testImplementation(project(":spring-core-test"))
 
-	testRuntimeOnly("ch.qos.logback:logback-classic")
+	testRuntimeOnly("ch.qos.logback:logback-classic:1.4.14")
 	testRuntimeOnly("org.bouncycastle:bcprov-jdk18on:1.71")
 	testRuntimeOnly(project(":spring-webmvc"))
 }

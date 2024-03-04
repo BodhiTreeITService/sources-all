@@ -10,7 +10,7 @@ dependencies {
 	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-security"))
 	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-web"))
 	runtimeOnly(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-jdbc"))
-	runtimeOnly("org.springframework.session:spring-session-jdbc")
+	runtimeOnly(project(":spring-session-jdbc"))
 	runtimeOnly("com.h2database:h2")
 
 	testImplementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-test"))

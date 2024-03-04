@@ -15,7 +15,7 @@ dependencies {
 	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-web"))
 
 	providedRuntime(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-tomcat"))
-	providedRuntime("org.glassfish.web:jakarta.servlet.jsp.jstl")
+	providedRuntime("org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.0")
 	providedRuntime("org.apache.tomcat.embed:tomcat-embed-jasper")
 
 	testImplementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-test"))

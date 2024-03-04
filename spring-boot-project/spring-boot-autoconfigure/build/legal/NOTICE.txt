@@ -1,4 +1,4 @@
-Spring Boot 3.2.3-SNAPSHOT
+Spring Boot 3.3.0-SNAPSHOT
 Copyright (c) 2012-2024 VMware, Inc.
 
 This product is licensed to you under the Apache License, Version 2.0

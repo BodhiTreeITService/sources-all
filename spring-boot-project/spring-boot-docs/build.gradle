@@ -89,15 +89,15 @@ dependencies {
 	implementation(project(path: ":spring-boot-project:spring-boot-test-autoconfigure"))
 	implementation(project(path: ":spring-boot-project:spring-boot-testcontainers"))
 	implementation(project(path: ":spring-boot-project:spring-boot-devtools"))
-	implementation("ch.qos.logback:logback-classic")
+	implementation("ch.qos.logback:logback-classic:1.4.14")
 	implementation("com.zaxxer:HikariCP")
-	implementation("io.micrometer:micrometer-jakarta9")
+	implementation("io.micrometer:micrometer-jakarta9:1.12.3")
 	implementation("io.micrometer:micrometer-tracing")
 	implementation("io.micrometer:micrometer-registry-graphite")
 	implementation("io.micrometer:micrometer-registry-jmx")
 	implementation("io.projectreactor.netty:reactor-netty-http")
 	implementation("io.undertow:undertow-core")
-	implementation("jakarta.annotation:jakarta.annotation-api")
+	implementation("jakarta.annotation:jakarta.annotation-api:2.0.0")
 	implementation("jakarta.jms:jakarta.jms-api")
 	implementation("jakarta.persistence:jakarta.persistence-api")
 	implementation("jakarta.servlet:jakarta.servlet-api")
@@ -106,13 +106,13 @@ dependencies {
 		exclude group: "commons-logging", module: "commons-logging"
 		exclude group: "xml-apis", module: "xml-apis"
 	}
-	implementation("org.apache.httpcomponents.client5:httpclient5")
+	implementation("org.apache.httpcomponents.client5:httpclient5:5.3.1")
 	implementation("org.apache.commons:commons-dbcp2") {
 		exclude group: "commons-logging", module: "commons-logging"
 	}
 	implementation("org.apache.kafka:kafka-streams")
-	implementation("org.apache.logging.log4j:log4j-to-slf4j")
-	implementation("org.apache.tomcat.embed:tomcat-embed-core")
+	implementation("org.apache.logging.log4j:log4j-to-slf4j:2.21.1")
+	implementation("org.apache.tomcat.embed:tomcat-embed-core:10.1.18")
 	implementation("org.assertj:assertj-core")
 	implementation("org.cache2k:cache2k-spring")
 	implementation("org.apache.groovy:groovy")
@@ -132,7 +132,7 @@ dependencies {
 	implementation("org.mongodb:mongodb-driver-sync")
 	implementation("org.postgresql:r2dbc-postgresql")
 	implementation("org.quartz-scheduler:quartz")
-	implementation("org.slf4j:jul-to-slf4j")
+	implementation("org.slf4j:jul-to-slf4j:2.0.12")
 	implementation(project(":spring-jdbc"))
 	implementation(project(":spring-jms"))
 	implementation(project(":spring-orm"))
@@ -182,7 +182,7 @@ dependencies {
 	implementation("org.testcontainers:neo4j")
 	implementation("org.testcontainers:mongodb")
 	implementation("org.junit.jupiter:junit-jupiter")
-	implementation("org.yaml:snakeyaml")
+	implementation("org.yaml:snakeyaml:2.2")
 
 	mavenPluginDocumentation(project(path: ":spring-boot-project:spring-boot-tools:spring-boot-maven-plugin", configuration: "documentation"))
 
@@ -321,7 +321,7 @@ tasks.withType(org.asciidoctor.gradle.jvm.AbstractAsciidoctorTask) {
 			String formatted = version.split("\\.").take(2).join('.')
 			return version.endsWith("-SNAPSHOT") ? formatted + "-SNAPSHOT" : formatted
 		}
-		attributes  "hibernate-version": versionConstraints["org.hibernate.orm:hibernate-core"].split("\\.").take(2).join('.'),
+		attributes  "hibernate-version": versionConstraints["org.hibernate.orm:hibernate-core:6.4.4.Final"].split("\\.").take(2).join('.'),
 					"jetty-version": versionConstraints["org.eclipse.jetty:jetty-server"],
 					"jooq-version": versionConstraints["org.jooq:jooq"],
 					"lettuce-version": versionConstraints["io.lettuce:lettuce-core"],

@@ -10,7 +10,7 @@ dependencies {
 	optional("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 	testFixturesImplementation(testFixtures(project(":spring-beans")))
 	testFixturesImplementation(testFixtures(project(":spring-core")))
-	testFixturesImplementation("com.google.code.findbugs:jsr305")
+	testFixturesImplementation("com.google.code.findbugs:jsr305:3.0.2")
 	testImplementation(project(":spring-core-test"))
 	testImplementation(testFixtures(project(":spring-beans")))
 	testImplementation(testFixtures(project(":spring-core")))

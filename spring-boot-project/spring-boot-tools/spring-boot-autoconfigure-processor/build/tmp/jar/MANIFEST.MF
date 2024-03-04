@@ -3,6 +3,6 @@ Automatic-Module-Name: spring.boot.autoconfigure.processor
 Build-Jdk-Spec: 17
 Built-By: Spring
 Implementation-Title: Spring Boot AutoConfigure Annotation Processor
-Implementation-Version: 3.2.3-SNAPSHOT
+Implementation-Version: 3.3.0-SNAPSHOT
 Spring-Boot-Jar-Type: annotation-processor
 

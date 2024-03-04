@@ -39,11 +39,13 @@ public class SpringSamplePlugin extends AbstractSpringJavaPlugin {
 		def version = versionCatalog.findVersion("org-springframework-boot")
 		version.ifPresent {
 			def springBootVersion = it.displayName
-			if (Utils.isSnapshot(springBootVersion)) {
-				project.ext.forceMavenRepositories = 'snapshot'
-			} else if (Utils.isMilestone(springBootVersion)) {
-				project.ext.forceMavenRepositories = 'milestone'
-			}
+//			println("--------springBootVersion ${springBootVersion}-------------")
+			project.ext.forceMavenRepositories = 'snapshot'
+//			if (Utils.isSnapshot(springBootVersion)) {
+//				project.ext.forceMavenRepositories = 'snapshot'
+//			} else if (Utils.isMilestone(springBootVersion)) {
+//				project.ext.forceMavenRepositories = 'milestone'
+//			}
 		}
 	}
 }

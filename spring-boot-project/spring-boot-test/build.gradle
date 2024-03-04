@@ -13,12 +13,12 @@ dependencies {
 
 	optional("com.fasterxml.jackson.core:jackson-databind")
 	optional("com.google.code.gson:gson")
-	optional("com.jayway.jsonpath:json-path")
+	optional("com.jayway.jsonpath:json-path:2.9.0")
 	optional("io.projectreactor.netty:reactor-netty-http")
 	optional("jakarta.json.bind:jakarta.json.bind-api")
 	optional("jakarta.servlet:jakarta.servlet-api")
 	optional("junit:junit")
-	optional("org.apache.httpcomponents.client5:httpclient5")
+	optional("org.apache.httpcomponents.client5:httpclient5:5.3.1")
 	optional("org.assertj:assertj-core")
 	optional("org.hamcrest:hamcrest-core")
 	optional("org.hamcrest:hamcrest-library")
@@ -26,8 +26,8 @@ dependencies {
 	optional("org.jetbrains.kotlin:kotlin-reflect")
 	optional("org.junit.jupiter:junit-jupiter-api")
 	optional("org.mockito:mockito-core")
-	optional("org.skyscreamer:jsonassert")
-	optional("org.seleniumhq.selenium:htmlunit-driver") {
+	optional("org.skyscreamer:jsonassert:1.5.1")
+	optional("org.seleniumhq.selenium:htmlunit-driver:2.70.0") {
 		exclude(group: "commons-logging", module: "commons-logging")
 		exclude(group: "com.sun.activation", module: "jakarta.activation")
 	}
@@ -43,9 +43,9 @@ dependencies {
 	testImplementation(project(":spring-boot-project:spring-boot-tools:spring-boot-test-support"))
 	testImplementation("io.mockk:mockk")
 	testImplementation("jakarta.json:jakarta.json-api")
-	testImplementation("ch.qos.logback:logback-classic")
+	testImplementation("ch.qos.logback:logback-classic:1.4.14")
 	testImplementation("com.squareup.okhttp3:okhttp")
-	testImplementation("org.apache.tomcat.embed:tomcat-embed-core")
+	testImplementation("org.apache.tomcat.embed:tomcat-embed-core:10.1.18")
 	testImplementation("org.apache.groovy:groovy")
 	testImplementation("org.apache.groovy:groovy-xml")
 	testImplementation("org.eclipse:yasson")

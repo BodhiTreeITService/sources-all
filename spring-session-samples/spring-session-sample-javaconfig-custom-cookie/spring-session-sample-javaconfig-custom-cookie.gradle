@@ -1,29 +1,30 @@
 plugins {
-    id "org.gretty" version "4.1.0"
+//  id "org.gretty" version "4.1.0"
+	id "org.gretty"
     id "io.spring.convention.spring-sample-war"
 }
 
 dependencies {
 	management platform(project(":spring-session-dependencies"))
 	implementation  project(':spring-session-data-redis')
-	implementation  "org.springframework:spring-web"
+	implementation  project(":spring-web")
 	implementation  "io.lettuce:lettuce-core"
 	implementation  "org.slf4j:slf4j-api"
-	implementation  "org.slf4j:jcl-over-slf4j"
-	implementation  "org.slf4j:log4j-over-slf4j"
-	implementation  "ch.qos.logback:logback-classic"
+	implementation  "org.slf4j:jcl-over-slf4j:2.0.12"
+	implementation  "org.slf4j:log4j-over-slf4j:2.0.12"
+	implementation  "ch.qos.logback:logback-classic:1.4.14"
 	implementation  "org.testcontainers:testcontainers"
 
 	providedCompile "jakarta.servlet:jakarta.servlet-api"
-	providedCompile "org.glassfish.web:jakarta.servlet.jsp.jstl"
-	providedCompile "jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api"
+	providedCompile "org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.0"
+	providedCompile "jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0"
 
 	testImplementation "org.assertj:assertj-core"
 	testImplementation "org.junit.jupiter:junit-jupiter-api"
 	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
 
-	integrationTestCompile "org.seleniumhq.selenium:htmlunit-driver"
-	integrationTestCompile "org.seleniumhq.selenium:selenium-support"
+	integrationTestCompile "org.seleniumhq.selenium:htmlunit-driver:2.70.0"
+	integrationTestCompile "org.seleniumhq.selenium:selenium-support:4.14.1"
 }
 
 gretty {

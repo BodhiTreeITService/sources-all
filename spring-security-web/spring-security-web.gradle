@@ -21,7 +21,7 @@ dependencies {
 
 	testImplementation project(path: ':spring-security-core', configuration: 'tests')
 	testImplementation 'io.projectreactor:reactor-test'
-	testImplementation 'jakarta.xml.bind:jakarta.xml.bind-api'
+	testImplementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.1'
 	testImplementation 'jakarta.websocket:jakarta.websocket-api'
 	testImplementation 'jakarta.websocket:jakarta.websocket-client-api'
 	testImplementation 'org.hamcrest:hamcrest'

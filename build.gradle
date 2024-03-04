@@ -2,16 +2,37 @@ import io.spring.gradle.IncludeRepoTask
 import trang.RncToXsd
 
 buildscript {
+	ext {
+		releaseBuild = version.endsWith('RELEASE')
+		snapshotBuild = version.endsWith('SNAPSHOT')
+		milestoneBuild = !(releaseBuild || snapshotBuild)
+	}
+
+	repositories {
+		gradlePluginPortal()
+		maven { url 'https://plugins.gradle.org/m2/' }
+		maven { url 'https://repo.spring.io/plugins-release/' }
+		maven {
+			url = 'https://repo.spring.io/plugins-snapshot'
+			if (project.hasProperty('artifactoryUsername')) {
+				credentials {
+					username "$artifactoryUsername"
+					password "$artifactoryPassword"
+				}
+			}
+		}
+	}
+
 	dependencies {
 		classpath libs.io.spring.javaformat.spring.javaformat.gradle.plugin
 		classpath libs.io.spring.nohttp.nohttp.gradle
 		classpath libs.io.freefair.gradle.aspectj.plugin
 		classpath libs.org.jetbrains.kotlin.kotlin.gradle.plugin
 		classpath libs.com.netflix.nebula.nebula.project.plugin
+
+		classpath libs.org.springframework.boot.spring.boot.gradle.plugin
 	}
-	repositories {
-		maven { url 'https://plugins.gradle.org/m2/' }
-	}
+
 }
 
 plugins {
@@ -38,9 +59,13 @@ plugins {
 //	spring security
 	alias(libs.plugins.org.gradle.wrapper.upgrade)
 
+//	spring-session
+//	id "com.github.ben-manes.versions"
+
 //  sources-all
 	id "war"
 	id "org.springframework.boot.conventions"
+
 }
 configurations {
 	providedRuntime {
@@ -61,7 +86,8 @@ tasks.named('test') {
 ext {
 	springBootProjects = subprojects.findAll { it.name.startsWith("spring-boot") }
 	springSecurityProjects = subprojects.findAll { it.name.startsWith("spring-security") }
-	springFrameworkProjects = subprojects - springBootProjects - springSecurityProjects
+	springSessionProjects = subprojects.findAll { it.name.startsWith("spring-session") }
+	springFrameworkProjects = subprojects - springBootProjects - springSecurityProjects - springSessionProjects
 	moduleProjects = springFrameworkProjects.findAll { it.name.startsWith("spring-") }
 	javaProjects = springFrameworkProjects.findAll { !it.name.startsWith("framework-") }
 
@@ -81,6 +107,11 @@ configure(allprojects) { project ->
 	else if(project.name.startsWith("spring-security")){
 		group "org.springframework.security"
 		version = springSecurityVersion
+	}
+	else if(project.name.startsWith("spring-session")){
+		group = 'org.springframework.session'
+		version = springSessionVersion
+		description = 'Spring Session'
 	}
 	else {
 		apply plugin: "org.springframework.build.localdev"
@@ -111,7 +142,7 @@ configure(allprojects) { project ->
 	}
 }
 
-configure(allprojects - project(":framework-platform") - springBootProjects -springSecurityProjects) {
+configure(allprojects - project(":framework-platform") - springBootProjects - springSecurityProjects - springSessionProjects) {
 	configurations {
 		dependencyManagement {
 			canBeConsumed = false
@@ -148,8 +179,8 @@ configure([rootProject] + javaProjects) { project ->
 		testRuntimeOnly("org.apache.logging.log4j:log4j-jul")
 		testRuntimeOnly("org.apache.logging.log4j:log4j-slf4j2-impl")
 		// JSR-305 only used for non-required meta-annotations
-		compileOnly("com.google.code.findbugs:jsr305")
-		testCompileOnly("com.google.code.findbugs:jsr305")
+		compileOnly("com.google.code.findbugs:jsr305:3.0.2")
+		testCompileOnly("com.google.code.findbugs:jsr305:3.0.2")
 	}
 
 	ext.javadocLinks = [
@@ -185,7 +216,22 @@ configure(moduleProjects) { project ->
 	apply from: "${rootDir}/gradle/spring-module.gradle"
 }
 
+configure(springSessionProjects){ project ->
+	apply plugin: 'io.spring.javaformat'
 
+	plugins.withType(JavaPlugin) {
+		sourceCompatibility = JavaVersion.VERSION_17
+	}
+
+	tasks.withType(Test) {
+		useJUnitPlatform()
+	}
+
+	// Spring Framework 6.1 requires -parameters to be able to introspect method parameter names
+	tasks.withType(JavaCompile) {
+		options.compilerArgs.add("-parameters")
+	}
+}
 // spring boot
 defaultTasks 'build'
 
@@ -199,6 +245,10 @@ nohttp {
 	source.exclude "**/.classpath"
 	source.exclude "**/.project"
 	source.exclude "spring-boot-project/spring-boot-tools/spring-boot-buildpack-platform/src/test/resources/org/springframework/boot/buildpack/platform/docker/export.tar"
+
+	source.exclude "buildSrc/build/**"
+	source.exclude "spring-session-docs/.gradle/nodejs/**"
+	source.exclude "spring-session-docs/modules/ROOT/examples/**/build/**"
 }
 
 check {
@@ -259,6 +309,14 @@ springRelease {
 	referenceDocUrl = "https://docs.spring.io/spring-security/reference/{version}/index.html"
 	apiDocUrl = "https://docs.spring.io/spring-security/docs/{version}/api/"
 	replaceSnapshotVersionInReferenceDocUrl = true
+
+	repositoryOwner = "spring-projects"
+	repositoryName = "spring-session"
+//	weekOfMonth = 3
+//	dayOfWeek = 2
+//	referenceDocUrl = "https://docs.spring.io/spring-session/reference/{version}/index.html"
+//	apiDocUrl = "https://docs.spring.io/spring-session/docs/{version}/api/"
+//	replaceSnapshotVersionInReferenceDocUrl = true
 }
 
 def toolchainVersion() {

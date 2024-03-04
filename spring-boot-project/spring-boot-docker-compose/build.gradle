@@ -23,7 +23,7 @@ dependencies {
 
 	testImplementation(project(":spring-boot-project:spring-boot-tools:spring-boot-test-support"))
 	testImplementation(project(":spring-boot-project:spring-boot-test"))
-	testImplementation("ch.qos.logback:logback-classic")
+	testImplementation("ch.qos.logback:logback-classic:1.4.14")
 	testImplementation("org.assertj:assertj-core")
 	testImplementation("org.awaitility:awaitility")
 	testImplementation("org.junit.jupiter:junit-jupiter")

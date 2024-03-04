@@ -10,7 +10,7 @@ dependencies {
 	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-security"))
 	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-web"))
 	implementation("com.hazelcast:hazelcast")
-	implementation("org.springframework.session:spring-session-hazelcast") {
+	implementation(project(":spring-session-hazelcast")) {
 		exclude group: "javax.annotation", module: "javax.annotation-api"
 	}
 

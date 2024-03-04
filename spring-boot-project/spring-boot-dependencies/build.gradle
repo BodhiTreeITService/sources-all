@@ -321,7 +321,7 @@ bom {
 			]
 		}
 	}
-	library("Glassfish JSTL", "3.0.1") {
+	library("Glassfish JSTL", "3.0.0") {
 		group("org.glassfish.web") {
 			modules = [
 				"jakarta.servlet.jsp.jstl"
@@ -384,7 +384,7 @@ bom {
 				"hibernate-ant",
 				"hibernate-c3p0",
 				"hibernate-community-dialects",
-				"hibernate-core",
+				"hibernate-core:6.4.4.Final",
 				"hibernate-envers",
 				"hibernate-graalvm",
 				"hibernate-hikaricp",
@@ -401,7 +401,7 @@ bom {
 	library("Hibernate Validator", "8.0.1.Final") {
 		group("org.hibernate.validator") {
 			modules = [
-				"hibernate-validator",
+				"hibernate-validator:8.0.1.Final",
 				"hibernate-validator-annotation-processor"
 			]
 		}
@@ -493,7 +493,7 @@ bom {
 			]
 		}
 	}
-	library("Jakarta Annotation", "2.1.1") {
+	library("Jakarta Annotation", "2.0.0") {
 		group("jakarta.annotation") {
 			modules = [
 				"jakarta.annotation-api"
@@ -846,7 +846,7 @@ bom {
 			]
 		}
 	}
-	library("Logback", "1.4.14") {
+	library("Logback", ":1.2.11") {
 		group("ch.qos.logback") {
 			modules = [
 				"logback-access",
@@ -1457,7 +1457,7 @@ bom {
 			]
 		}
 	}
-	library("Selenium HtmlUnit", "4.13.0") {
+	library("Selenium HtmlUnit", "2.70.0") {
 		group("org.seleniumhq.selenium") {
 			modules = [
 				"htmlunit-driver"
@@ -1475,7 +1475,7 @@ bom {
 		group("org.slf4j") {
 			modules = [
 				"jcl-over-slf4j",
-				"jul-to-slf4j",
+				"jul-to-slf4j:2.0.12",
 				"log4j-over-slf4j",
 				"slf4j-api",
 				"slf4j-ext",
@@ -1488,10 +1488,10 @@ bom {
 			]
 		}
 	}
-	library("SnakeYAML", "2.2") {
+	library("snakeyaml:2.2", "2.2") {
 		group("org.yaml") {
 			modules = [
-				"snakeyaml"
+				"snakeyaml:2.2"
 			]
 		}
 	}
@@ -1614,7 +1614,7 @@ bom {
 			]
 		}
 	}
-	library("Spring Session", "3.2.1") {
+	library("Spring Session", "3.3.0-SNAPSHOT") {
 		considerSnapshots()
 		prohibit {
 			startsWith(["Apple-", "Bean-", "Corn-", "Dragonfruit-"])
@@ -1673,7 +1673,7 @@ bom {
 	library("Thymeleaf Layout Dialect", "3.3.0") {
 		group("nz.net.ultraq.thymeleaf") {
 			modules = [
-				"thymeleaf-layout-dialect"
+				"thymeleaf-layout-dialect:3.3.0"
 			]
 		}
 	}
@@ -1690,7 +1690,7 @@ bom {
 				"tomcat-embed-core",
 				"tomcat-embed-el",
 				"tomcat-embed-jasper",
-				"tomcat-embed-websocket"
+				"tomcat-embed-websocket:10.1.18"
 			]
 		}
 	}

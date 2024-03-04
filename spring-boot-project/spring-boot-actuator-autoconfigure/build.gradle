@@ -25,7 +25,7 @@ dependencies {
 	implementation("com.fasterxml.jackson.core:jackson-databind")
 	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
 
-	optional("ch.qos.logback:logback-classic")
+	optional("ch.qos.logback:logback-classic:1.4.14")
 	optional("com.datastax.oss:java-driver-core") {
 		exclude group: "org.slf4j", module: "jcl-over-slf4j"
 	}
@@ -36,8 +36,8 @@ dependencies {
 	optional("com.zaxxer:HikariCP")
 	optional("io.dropwizard.metrics:metrics-jmx")
 	optional("io.lettuce:lettuce-core")
-	optional("io.micrometer:micrometer-observation")
-	optional("io.micrometer:micrometer-jakarta9")
+	optional("io.micrometer:micrometer-observation:1.12.3")
+	optional("io.micrometer:micrometer-jakarta9:1.12.3")
 	optional("io.micrometer:micrometer-tracing")
 	optional("io.micrometer:micrometer-tracing-bridge-brave")
 	optional("io.micrometer:micrometer-tracing-bridge-otel")
@@ -87,8 +87,8 @@ dependencies {
 	optional("org.apache.kafka:kafka-clients")
 	optional("org.apache.kafka:kafka-streams")
 	optional("org.apache.logging.log4j:log4j-api")
-	optional("org.apache.tomcat.embed:tomcat-embed-core")
-	optional("org.apache.tomcat.embed:tomcat-embed-el")
+	optional("org.apache.tomcat.embed:tomcat-embed-core:10.1.18")
+	optional("org.apache.tomcat.embed:tomcat-embed-el:10.1.18")
 	optional("org.apache.tomcat:tomcat-jdbc")
 	optional("org.aspectj:aspectjweaver")
 	optional("org.cache2k:cache2k-micrometer")
@@ -103,9 +103,9 @@ dependencies {
 	optional("org.flywaydb:flyway-core")
 	optional("org.glassfish.jersey.core:jersey-server")
 	optional("org.glassfish.jersey.containers:jersey-container-servlet-core")
-	optional("org.hibernate.orm:hibernate-core")
+	optional("org.hibernate.orm:hibernate-core:6.4.4.Final")
 	optional("org.hibernate.orm:hibernate-micrometer")
-	optional("org.hibernate.validator:hibernate-validator")
+	optional("org.hibernate.validator:hibernate-validator:8.0.1.Final")
 	optional("org.influxdb:influxdb-java")
 	optional("org.liquibase:liquibase-core") {
 		exclude group: "javax.xml.bind", module: "jaxb-api"
@@ -137,26 +137,26 @@ dependencies {
 	optional("org.springframework.kafka:spring-kafka")
 	optional(project(":spring-security-config"))
 	optional(project(":spring-security-web"))
-	optional("org.springframework.session:spring-session-core")
+	optional(project(":spring-session-core"))
 	optional("redis.clients:jedis")
 
 	testImplementation(project(":spring-boot-project:spring-boot-test"))
 	testImplementation(project(":spring-boot-project:spring-boot-tools:spring-boot-test-support"))
-	testImplementation("io.micrometer:micrometer-observation-test")
+	testImplementation("io.micrometer:micrometer-observation-test:1.12.3")
 	testImplementation("io.projectreactor:reactor-test")
 	testImplementation("io.r2dbc:r2dbc-h2")
 	testImplementation("com.squareup.okhttp3:mockwebserver")
-	testImplementation("com.jayway.jsonpath:json-path")
+	testImplementation("com.jayway.jsonpath:json-path:2.9.0")
 	testImplementation("io.undertow:undertow-core")
 	testImplementation("io.undertow:undertow-servlet")
-	testImplementation("jakarta.xml.bind:jakarta.xml.bind-api")
+	testImplementation("jakarta.xml.bind:jakarta.xml.bind-api:4.0.1")
 	testImplementation("org.apache.activemq:artemis-jakarta-client") {
 		exclude group: "commons-logging", module: "commons-logging"
 	}
 	testImplementation("org.apache.activemq:artemis-jakarta-server") {
 		exclude group: "commons-logging", module: "commons-logging"
 	}
-	testImplementation("org.apache.logging.log4j:log4j-to-slf4j")
+	testImplementation("org.apache.logging.log4j:log4j-to-slf4j:2.21.1")
 	testImplementation("org.aspectj:aspectjrt")
 	testImplementation("org.assertj:assertj-core")
 	testImplementation("org.awaitility:awaitility")
@@ -169,7 +169,7 @@ dependencies {
 	testImplementation("org.junit.jupiter:junit-jupiter")
 	testImplementation("org.mockito:mockito-core")
 	testImplementation("org.mockito:mockito-junit-jupiter")
-	testImplementation("org.skyscreamer:jsonassert")
+	testImplementation("org.skyscreamer:jsonassert:1.5.1")
 	testImplementation(project(":spring-core-test"))
 	testImplementation(project(":spring-orm"))
 	testImplementation("org.springframework.data:spring-data-rest-webmvc")
@@ -177,7 +177,7 @@ dependencies {
 	testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
 	testImplementation("org.springframework.restdocs:spring-restdocs-webtestclient")
 	testImplementation(project(":spring-security-test"))
-	testImplementation("org.yaml:snakeyaml")
+	testImplementation("org.yaml:snakeyaml:2.2")
 
 	testRuntimeOnly("jakarta.management.j2ee:jakarta.management.j2ee-api")
 	testRuntimeOnly("jakarta.transaction:jakarta.transaction-api")

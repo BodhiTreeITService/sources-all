@@ -1,5 +1,6 @@
 plugins {
-    id "org.gretty" version "4.1.0"
+    //    id "org.gretty" version "4.1.0"
+	id "org.gretty"
     id "io.spring.convention.spring-sample-war"
 }
 

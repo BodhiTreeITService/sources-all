@@ -23,8 +23,8 @@ dependencies {
 	testImplementation "org.mockito:mockito-junit-jupiter"
 	testImplementation project(":spring-test")
 	testImplementation "org.slf4j:slf4j-api"
-	testImplementation "org.slf4j:log4j-over-slf4j"
-	testImplementation "ch.qos.logback:logback-classic"
+	testImplementation "org.slf4j:log4j-over-slf4j:2.0.12"
+	testImplementation "ch.qos.logback:logback-classic:1.4.14"
 
 	testRuntimeOnly 'org.hsqldb:hsqldb'
 }

@@ -35,7 +35,7 @@ public final class SpringBootVersion {
 	 * @return the version of Spring Boot
 	 */
 	public static String getVersion() {
-		return "3.2.3-SNAPSHOT";
+		return "3.3.0-SNAPSHOT";
 	}
 
 }

@@ -10,7 +10,7 @@ dependencies {
 	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-security"))
 	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-data-mongodb"))
 	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-web"))
-	implementation("org.springframework.session:spring-session-data-mongodb")
+	implementation(project(":spring-session-data-mongodb"))
 
 	testImplementation("org.testcontainers:mongodb")
 	testImplementation("org.testcontainers:junit-jupiter")

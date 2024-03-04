@@ -10,7 +10,7 @@ dependencies {
 	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-security"))
 	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-data-redis"))
 	implementation(project(":spring-boot-project:spring-boot-starters:spring-boot-starter-web"))
-	implementation("org.springframework.session:spring-session-data-redis")
+	implementation(project(":spring-session-data-redis"))
 
 	testImplementation("org.testcontainers:junit-jupiter")
 	testImplementation(project(":spring-boot-project:spring-boot-testcontainers"))

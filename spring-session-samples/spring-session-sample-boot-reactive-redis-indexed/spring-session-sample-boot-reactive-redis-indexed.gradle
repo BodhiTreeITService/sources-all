@@ -3,17 +3,17 @@ apply plugin: 'io.spring.convention.spring-sample-boot'
 dependencies {
 	management platform(project(":spring-session-dependencies"))
 	implementation project(':spring-session-data-redis')
-	implementation 'org.springframework.boot:spring-boot-starter-data-redis-reactive'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation project(":spring-boot-project:spring-boot-starters:spring-boot-starter-data-redis-reactive")
+	implementation project(":spring-boot-project:spring-boot-starters:spring-boot-starter-security")
+	implementation project(":spring-boot-project:spring-boot-starters:spring-boot-starter-webflux")
+	implementation project(":spring-boot-project:spring-boot-starters:spring-boot-starter-thymeleaf")
+	testImplementation project(":spring-boot-project:spring-boot-starters:spring-boot-starter-test")
 	testImplementation 'io.projectreactor:reactor-test'
 	testImplementation 'org.springframework.security:spring-security-test'
-	testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+	testImplementation project(":spring-boot-project:spring-boot-testcontainers")
 	testImplementation 'org.testcontainers:junit-jupiter'
-	testImplementation 'org.seleniumhq.selenium:selenium-java'
-	testImplementation 'org.seleniumhq.selenium:htmlunit-driver'
+	testImplementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+	testImplementation 'org.seleniumhq.selenium:htmlunit-driver:2.70.0'
 }
 
 tasks.named('test') {

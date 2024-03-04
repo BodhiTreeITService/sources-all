@@ -27,6 +27,6 @@ dependencies {
 	testImplementation(testFixtures(project(":spring-core")))
 	testImplementation(testFixtures(project(":spring-web")))
 	testImplementation("io.projectreactor.netty:reactor-netty-http")
-	testImplementation("org.apache.tomcat.embed:tomcat-embed-core")
-	testImplementation("org.apache.tomcat.embed:tomcat-embed-websocket")
+	testImplementation("org.apache.tomcat.embed:tomcat-embed-core:10.1.18")
+	testImplementation("org.apache.tomcat.embed:tomcat-embed-websocket:10.1.18")
 }

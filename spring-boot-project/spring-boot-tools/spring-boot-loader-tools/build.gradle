@@ -44,7 +44,7 @@ dependencies {
 	api("org.apache.commons:commons-compress:$commonsCompressVersion")
 	api(project(":spring-core"))
 
-	compileOnly("ch.qos.logback:logback-classic")
+	compileOnly("ch.qos.logback:logback-classic:1.4.14")
 
 	loader(project(":spring-boot-project:spring-boot-tools:spring-boot-loader"))
 	loaderClassic(project(":spring-boot-project:spring-boot-tools:spring-boot-loader-classic"))

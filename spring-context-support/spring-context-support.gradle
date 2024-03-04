@@ -21,7 +21,7 @@ dependencies {
 	testImplementation(testFixtures(project(":spring-core")))
 	testImplementation(testFixtures(project(":spring-tx")))
 	testImplementation("io.projectreactor:reactor-core")
-	testImplementation("jakarta.annotation:jakarta.annotation-api")
+	testImplementation("jakarta.annotation:jakarta.annotation-api:2.0.0")
 	testImplementation("org.hsqldb:hsqldb")
 	testRuntimeOnly("com.sun.mail:jakarta.mail")
 	testRuntimeOnly("org.ehcache:ehcache")

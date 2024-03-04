@@ -42,6 +42,6 @@ dependencies {
 	testImplementation("org.junit.jupiter:junit-jupiter")
 	testImplementation(project(":spring-context"))
 
-	testRuntimeOnly("org.hibernate.validator:hibernate-validator")
+	testRuntimeOnly("org.hibernate.validator:hibernate-validator:8.0.1.Final")
 	testRuntimeOnly("org.mockito:mockito-core")
 }

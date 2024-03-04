@@ -3,7 +3,7 @@ apply plugin: 'io.spring.convention.spring-module'
 dependencies {
 	management platform(project(":spring-security-dependencies"))
 	api project(':spring-security-core')
-	api 'jakarta.xml.bind:jakarta.xml.bind-api'
+	api 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.1'
 	api 'org.springframework.data:spring-data-commons'
 	api project(':spring-core')
 	

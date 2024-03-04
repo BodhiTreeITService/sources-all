@@ -7,9 +7,13 @@ plugins {
 dependencies {
 	constraints {
 		project.rootProject.allprojects { project ->
-			project.plugins.withType(SpringModulePlugin) {
-				api(project)
+			if(project.name.startsWith("spring-session"))
+			{
+				project.plugins.withType(SpringModulePlugin) {
+					api(project)
+				}
 			}
+
 		}
 	}
 }
